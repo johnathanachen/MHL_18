@@ -19,15 +19,18 @@ amazon = AmazonAPI(access_key,secret_key, assoc_tag)
 # soup_page = soup.body
 # soup_page = soup_page.find('div', class_='l-page')
 
+userSearchRequest = input("Search Keyword: ")
+
 headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36',
     }
-keyword = 'macbook'
+keyword = userSearchRequest
 test_url_amazon = 'https://www.amazon.com/s?keyword=' + keyword
 soup2 = requests.get(test_url_amazon, headers=headers)
 soup2.raise_for_status()
 soup_final = bs.BeautifulSoup(soup2.text, 'lxml')
 list_href=[]
+
 for a in soup_final.find_all(href=True):
     list_href += [a['href']]
 
@@ -37,8 +40,6 @@ def get_asin(url):
   # asin_scraper = r'https://www.amazon.com/.*/dp/(.*)\''
     result = re.search(asin_scraper,url).group(1)
     return result
-
-
 
 
 def find_price(asin_id):
