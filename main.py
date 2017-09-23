@@ -27,6 +27,9 @@ test_url_amazon = 'https://www.amazon.com/s?keyword=' + keyword
 soup2 = requests.get(test_url_amazon, headers=headers)
 soup2.raise_for_status()
 soup_final = bs.BeautifulSoup(soup2.text, 'lxml')
+list_href=[]
+for a in soup_final.find_all(href=True):
+    list_href += [a['href']]
 
 
 def get_asin(url):
@@ -35,8 +38,6 @@ def get_asin(url):
     result = re.search(asin_scraper,url).group(1)
     return result
 
-for a in soup_final.find_all('a', href=True):
-    print (get_asin(a['href']))
 
 
 
@@ -52,10 +53,5 @@ def find_price(asin_id):
 
 
 
-<<<<<<< HEAD
 # asin_id = get_asin(test_url_amazon)
 # price = find_price(asin_id)
-=======
-asin_id = get_asin(test_url)
-price = find_price(asin_id)
->>>>>>> 1b0e13898128639e341316d10987b76380787642
