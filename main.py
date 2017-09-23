@@ -4,16 +4,11 @@ import re
 import requests
 import bs4 as bs
 import urllib
-"""1. Find a way to get url of first search result
-   2. Build out the Alibaba API side
-   3. Create a function that finds the price differential between the two
-   4. Build out the front-end"""
-
-"""Add keys to the top"""
 
 access_key = 'AKIAJ5KTDL536GDNI57Q'
 secret_key = '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'
 assoc_tag = 'ibafeva-20'
+
 amazon = AmazonAPI(access_key,secret_key, assoc_tag)
 
 
@@ -57,5 +52,10 @@ def find_price(asin_id):
 
 
 
+<<<<<<< HEAD
 # asin_id = get_asin(test_url_amazon)
 # price = find_price(asin_id)
+=======
+asin_id = get_asin(test_url)
+price = find_price(asin_id)
+>>>>>>> 1b0e13898128639e341316d10987b76380787642
