@@ -14,3 +14,6 @@ A simple way to price match products on Amazon and Ablibaba with search
 ```py
 python3 amazon_get.py
 ```
+
+## To Run
+get_amazon_minus_alibaba(keyword)
