@@ -11,9 +11,6 @@ A simple way to price match products on Amazon and Ablibaba with search
 ## Installation
 
 ## Usage
-
-## TODO:
-1. Find a way to get url of first search result
-2. Build out the Alibaba API side
-3. Create a function that finds the price differential between the two
-4. Build out the front-end
+```py
+python3 amazon_get.py
+```
