@@ -1,19 +1,19 @@
 from amazon.api import AmazonAPI
-import cgi, cgitb 
 import re
 import requests
 import bs4 as bs
 import urllib
 
-form = cgi.FieldStorage() 
-keyword = form.getvalue('Amazon')
+# cgitb.enable()
+# form = cgi.FieldStorage() 
+# keyword = form.getvalue('Amazon')
 
 access_key = 'AKIAJ5KTDL536GDNI57Q'
 secret_key = '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'
 assoc_tag = 'ibafeva-20'
 
-# userSearchKeyword = input("Search Keyword: ")
-# keyword = userSearchKeyword
+userSearchKeyword = input("Search Keyword: ")
+keyword = userSearchKeyword
 
 amazon = AmazonAPI(access_key,secret_key, assoc_tag)
 products = amazon.search(Keywords=keyword, SearchIndex='All')

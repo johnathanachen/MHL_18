@@ -87,6 +87,10 @@ alibaba_url = 'https://www.alibaba.com/trade/search?fsb=y&IndexArea=product_en&C
 alibaba_url_request = urlopen(alibaba_url)
 alibaba_html = alibaba_url_request.read()
 alibaba_html = alibaba_html.decode('utf-8')
+print(alibaba_html)
+
+
+
 list_html = alibaba_html.split('price')
 # result = re.search(price_scraper,alibaba_html)
 price_list = []
