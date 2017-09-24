@@ -9,9 +9,18 @@
 </head>
 <body>
     <div class="wrapper">
-        <div class="search__wrapper">
-            <input></input><button>Submit</button>
-        </div>
+        <form class="search_container" action="amazon_get.py" method="get">
+            <p>Amazon Search:&nbsp;</p>
+            <input type="text" name="Amazon">
+            <input type="submit" value="Submit" />
+        </form>
+        <form class="search_container" action="hello_get.py" method="get">
+            <p>Alibaba Search:&nbsp;</p>
+            <input type="text" name="Alibaba" />
+            <input type="submit" value="Submit" />
+        </form>
     </div>
+    </body>
 </body>
 </html>
+
