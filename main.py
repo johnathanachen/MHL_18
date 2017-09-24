@@ -3,13 +3,14 @@ from datetime import datetime
 import re
 import requests
 import bs4 as bs
-import urllib
-from time import sleep
-
+from urllib.request import urlopen
+import json
 """ Access Keys"""
 access_key = 'AKIAJ5KTDL536GDNI57Q'
 secret_key = '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'
 assoc_tag = 'ibafeva-20'
+
+"""--------AMAZON-------"""
 
 """Sets up API"""
 amazon = AmazonAPI(access_key,secret_key, assoc_tag)
@@ -80,9 +81,39 @@ product_info(asin_list)
     # if price[0] == None or price[0] == 0:
     #     return
 
-# test_url_alibaba = 'https://www.alibaba.com/trade/search?fsb=y&IndexArea=product_en&CatId=&SearchText=power+bank'
+keyword_alibaba = 'power bank'
+keyword_alibaba = keyword_alibaba.replace(' ', '+')
+alibaba_url = 'https://www.alibaba.com/trade/search?fsb=y&IndexArea=product_en&CatId=&SearchText=' + keyword_alibaba
+alibaba_url_request = urlopen(alibaba_url)
+alibaba_html = alibaba_url_request.read()
+alibaba_html = alibaba_html.decode('utf-8')
+list_html = alibaba_html.split('price')
+# result = re.search(price_scraper,alibaba_html)
+price_list = []
+for item in list_html:
+    # price_value = re.search('(?<=US )$',item).group(0)
+    price_list.append()
+
+"""find 15 letters after US $"""
+# starts at 9
 #
-# sauce = urllib.request.urlopen(test_url_alibaba).read()
+# "price":"US
+# alibaba_url_request.raise_for_status()
+# soup_alibaba = bs.BeautifulSoup(alibaba_url_request.text, 'json')
+# result = soup_alibaba.find_allr('a', string='price')
+# price_scraper = r'"price:"([^"]*)"'
+# result = re.search(price_scraper,soup_alibaba).group(1)
+# re.search(r'"fmt_headline":"([^"]*)"', y)
+# list_href=[]
+# for a in soup_alibaba(href=True):
+#     list_href += [a['href']]
+
+# list_price=soup_alibaba.find_all('div', class_= 'price')
+
 # soup = bs.BeautifulSoup(sauce, 'lxml')
 # soup_page = soup.body
-# soup_page = soup_page.find('div', class_='l-page')
+# soup_page_div = soup.find_all('div', class_='l-page')
+# # soup_l_page = soup_page.find('div', class_='l-page')
+# soup_l_page = soup_page_div.findall('div', class_='l-page-main')
+# for i in soup_l_page:
+#     print(i.prettify())
