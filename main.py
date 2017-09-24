@@ -31,7 +31,6 @@ def get_list_href(keyword):
 
     # List all URL in with /dp/
     list_href = [el["href"] for el in soup_final.findAll("a", href=re.compile("/dp/"))]
-    print("All url with /dp/ - PASS")
 
     # # Extract asin
     # m = re.search('(?<=/dp/)\w+', mystring)
@@ -52,13 +51,11 @@ def get_list_asin(list_href):
     for address in list_href:
         asin_number = re.search('(?<=/dp/)\w+', address)
         asin_list.append(asin_number.group(0))
-    print("list of asin numbers - PASS")
     return asin_list
 
 """Gets the Product name and price given its respective asin id"""
 def find_price(asin_id):
     product = amazon.lookup(ItemId=asin_id)
-    title = product.title
     price = product.price_and_currency
     if price[0] == None or price[0] == 0:
         return None
@@ -74,9 +71,6 @@ def get_list_prices(asin_list):
             list_prices.append(float(find_price(asin)))
     return list_prices
 
-list_href = get_list_href(keyword)
-asin_list = get_list_asin(list_href)
-product_info(asin_list)
 
 #
 # for i, product in enumerate(products):
@@ -130,7 +124,7 @@ def average_prices(list):
 def full_amazon(keyword):
     list_href = get_list_href(keyword)
     asin_list = get_list_asin(list_href)
-    result_amazon = get_list_prices(asin_list[0:5])
+    result_amazon = get_list_prices(asin_list[0:3])
     return result_amazon
 
 
@@ -149,4 +143,6 @@ def get_amazon_minus_alibaba(keyword):
 
     amazon_final = full_amazon(keyword)
     alibaba_final = full_alibaba(keyword)
-    return average_prices(amazon_final) - average_prices(alibaba_final)
+    price_differential= average_prices(amazon_final) - average_prices(alibaba_final)
+    String = 'The net price differential of the amazon price minus the alibaba price for the ' + keyword + ' is :' + str(price_differential)
+    return String
